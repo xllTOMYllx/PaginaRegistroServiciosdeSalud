@@ -1,8 +1,12 @@
+import RegisterForm from './components/RegisterForm';
+
 function App() {
   return (
-    <div className="bg-blue-500 text-white p-4">
-      <h1 className="text-3xl font-bold">Hello, Tailwind!</h1>
+    <div className="p-4">
+      <h1 className="text-3xl font-bold text-center mb-6">User Registration</h1>
+      <RegisterForm />
     </div>
   );
 }
+
 export default App;
