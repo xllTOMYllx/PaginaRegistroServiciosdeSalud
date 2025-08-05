@@ -7,6 +7,7 @@ function RegisterForm() {
     apellidoPaterno: '',
     apellidoMaterno: '',
     curp: '',
+    Rfc: '',
     email: '',
     password: ''
   });
@@ -71,6 +72,20 @@ function RegisterForm() {
             />
           </div>
 
+           <div className="mb-3">
+            <label className="form-label">RFC</label>
+            <input
+              type="Rfc"
+              name="Rfc"
+              value={formData.Rfc}
+              onChange={handleChange}
+              className="form-control rounded-3"
+              required
+            />
+          </div>
+
+          
+
           <div className="mb-3">
             <label className="form-label">CURP</label>
             <input
@@ -107,7 +122,6 @@ function RegisterForm() {
               required
             />
           </div>
-
           <button type="submit" className="btn btn-primary w-100 rounded-3">
             Registrar
           </button>
