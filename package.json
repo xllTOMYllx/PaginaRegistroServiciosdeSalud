@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/xllTOMYllx/PaginaRegistroServiciosdeSalud/issues"
   },
-  "homepage": "https://github.com/xllTOMYllx/PaginaRegistroServiciosdeSalud#readme"
+  "homepage": "https://github.com/xllTOMYllx/PaginaRegistroServiciosdeSalud#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.7"
+  }
 }
