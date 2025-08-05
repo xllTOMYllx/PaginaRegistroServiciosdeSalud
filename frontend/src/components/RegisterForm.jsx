@@ -28,9 +28,6 @@ function RegisterForm() {
   return (
     <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
       <div className="p-4 rounded-4 shadow bg-white" style={{ width: '100%', maxWidth: '420px' }}>
-        <div className="text-center mb-3">
-          <img src="/logo-tec.png" alt="Logo ITSX" style={{ width: '100px' }} />
-        </div>
 
         <h4 className="text-center mb-3">REGISTRO</h4>
 
