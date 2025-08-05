@@ -105,7 +105,8 @@ function RegisterForm() {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary w-100 rounded-3">
+          <button type="submit" className="btn btn-primary w-100 rounded-3" 
+          style= {{ backgroundColor: '#7A1737', borderColor: '#7A1737' }}>
             Registrar
           </button>
         </form>
