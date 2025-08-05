@@ -2,15 +2,22 @@ import { useState } from 'react';
 import axios from 'axios';
 
 function RegisterForm() {
-  const [formData, setFormData] = useState({ email: '', password: '', name: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    apellidoPaterno: '',
+    apellidoMaterno: '',
+    curp: '',
+    email: '',
+    password: ''
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3000/api/register', formData);
-      console.log('User registered:', response.data);
+      console.log('Usuario registrado:', response.data);
     } catch (error) {
-      console.error('Registration failed:', error);
+      console.error('Fallo en el registro:', error);
     }
   };
 
@@ -19,47 +26,96 @@ function RegisterForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-gray-100 rounded-lg shadow-md">
-      <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">Name</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Enter your name"
-        />
+    <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+      <div className="p-4 rounded-4 shadow bg-white" style={{ width: '100%', maxWidth: '420px' }}>
+        <div className="text-center mb-3">
+          <img src="/logo-tec.png" alt="Logo ITSX" style={{ width: '100px' }} />
+        </div>
+
+        <h4 className="text-center mb-3">REGISTRO</h4>
+
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label">Nombre</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="form-control rounded-3"
+              required
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Apellido Paterno</label>
+            <input
+              type="text"
+              name="apellidoPaterno"
+              value={formData.apellidoPaterno}
+              onChange={handleChange}
+              className="form-control rounded-3"
+              required
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Apellido Materno</label>
+            <input
+              type="text"
+              name="apellidoMaterno"
+              value={formData.apellidoMaterno}
+              onChange={handleChange}
+              className="form-control rounded-3"
+              required
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">CURP</label>
+            <input
+              type="text"
+              name="curp"
+              value={formData.curp}
+              onChange={handleChange}
+              className="form-control rounded-3"
+              required
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Correo Electrónico</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="form-control rounded-3"
+              required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="form-label">Contraseña</label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="********"
+              className="form-control rounded-3"
+              required
+            />
+          </div>
+
+          <button type="submit" className="btn btn-primary w-100 rounded-3">
+            Registrar
+          </button>
+        </form>
+
+        <p className="text-center text-muted mt-4 small"></p>
       </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">Email</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Enter your email"
-        />
-      </div>
-      <div className="mb-6">
-        <label className="block text-gray-700 font-bold mb-2">Password</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Enter your password"
-        />
-      </div>
-      <button
-        type="submit"
-        className="w-full p-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
-      >
-        Register
-      </button>
-    </form>
+    </div>
   );
 }
 
