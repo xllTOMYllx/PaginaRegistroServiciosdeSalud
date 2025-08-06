@@ -27,11 +27,11 @@ function RegisterForm() {
 
   return (
     <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
-      <div className="p-4 rounded-4 shadow bg-white" style={{ width: '100%', maxWidth: '420px' }}>
+      <div className="p-4 rounded-4 shadow bg-white" style={{ width: '100%', maxWidth: '600px' }}>
 
-        <h4 className="text-center mb-3">REGISTRO</h4>
+        <h4 className="text-center mb-3" style={{ color: '#7A1737', fontSize: '30px' }}> CREACIÓN DE CUENTA</h4>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
           <div className="mb-3">
             <label className="form-label">Nombre</label>
             <input
@@ -39,6 +39,7 @@ function RegisterForm() {
               name="name"
               value={formData.name}
               onChange={handleChange}
+              placeholder="Ingresa tu nombre"
               className="form-control rounded-3"
               required
             />
@@ -51,6 +52,7 @@ function RegisterForm() {
               name="apellidoPaterno"
               value={formData.apellidoPaterno}
               onChange={handleChange}
+              placeholder="Ingresa tu apellido paterno"
               className="form-control rounded-3"
               required
             />
@@ -63,6 +65,7 @@ function RegisterForm() {
               name="apellidoMaterno"
               value={formData.apellidoMaterno}
               onChange={handleChange}
+              placeholder="Ingresa tu apellido materno"
               className="form-control rounded-3"
               required
             />
@@ -75,6 +78,7 @@ function RegisterForm() {
               name="curp"
               value={formData.curp}
               onChange={handleChange}
+              placeholder="Ingresa tu CURP"
               className="form-control rounded-3"
               required
             />
@@ -87,6 +91,20 @@ function RegisterForm() {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              placeholder="Ingresa tu correo electrónico"
+              className="form-control rounded-3"
+              required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="form-label">Usuario</label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Ingresa tu usuario"
               className="form-control rounded-3"
               required
             />
@@ -99,17 +117,22 @@ function RegisterForm() {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="********"
+              placeholder="Ingresa tu contraseña"
               className="form-control rounded-3"
               required
             />
           </div>
 
           <button type="submit" className="btn btn-primary w-100 rounded-3" 
-          style= {{ backgroundColor: '#7A1737', borderColor: '#7A1737' }}>
+          style= {{ backgroundColor: '#7A1737', borderColor: '#7A1737'}}>
             Registrar
           </button>
+          <p className="text-center mt-3">¿Ya tienes una cuenta?</p>
         </form>
+        <button type="submit" className="btn btn-primary w-100 rounded-3" 
+          style= {{ backgroundColor: '#7A1737', borderColor: '#7A1737'}}>
+            Inicia Sesión
+          </button>
 
         <p className="text-center text-muted mt-4 small"></p>
       </div>
