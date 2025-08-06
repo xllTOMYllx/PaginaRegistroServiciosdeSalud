@@ -130,6 +130,7 @@ function RegisterForm() {
           <p className="text-center mt-3">¿Ya tienes una cuenta?</p>
         </form>
         <button type="submit" className="btn btn-primary w-100 rounded-3" 
+        onClick={() => window.location.href = '/sesion.jsx'} 
           style= {{ backgroundColor: '#7A1737', borderColor: '#7A1737'}}>
             Inicia Sesión
           </button>
