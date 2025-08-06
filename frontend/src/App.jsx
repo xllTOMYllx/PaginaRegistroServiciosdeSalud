@@ -1,27 +1,36 @@
 import { useState } from 'react';
 import RegisterForm from './components/RegisterForm';
 import Sesion from './components/sesion';
+import Home from './components/Home';
 
 function App() {
-  const [showRegister, setShowRegister] = useState(true);
+  const [view, setView] = useState('register'); // 'register', 'login', 'home'
 
   return (
     <div className="p-4">
       <div className="d-flex justify-content-center mb-4">
         <button
-          className={`btn me-2 ${showRegister ? 'btn-primary' : 'btn-outline-primary'}`}
-          onClick={() => setShowRegister(true)}
+          className={`btn me-2 ${view === 'register' ? 'btn-primary' : 'btn-outline-primary'}`}
+          onClick={() => setView('register')}
         >
           Registro
         </button>
         <button
-          className={`btn ${!showRegister ? 'btn-primary' : 'btn-outline-primary'}`}
-          onClick={() => setShowRegister(false)}
+          className={`btn me-2 ${view === 'login' ? 'btn-primary' : 'btn-outline-primary'}`}
+          onClick={() => setView('login')}
         >
           Iniciar Sesión
         </button>
+        <button
+          className={`btn ${view === 'home' ? 'btn-primary' : 'btn-outline-primary'}`}
+          onClick={() => setView('home')}
+        >
+          Home
+        </button>
       </div>
-      {showRegister ? <RegisterForm /> : <Sesion />}
+      {view === 'register' && <RegisterForm />}
+      {view === 'login' && <Sesion />}
+      {view === 'home' && <Home />}
     </div>
   );
 }
