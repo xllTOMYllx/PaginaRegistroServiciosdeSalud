@@ -2,27 +2,62 @@ import { useState } from 'react';
 import axios from 'axios';
 
 function RegisterForm() {
+  const [mensaje, setMensaje] = useState('');
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState({
-    name: '',
-    apellidoPaterno: '',
-    apellidoMaterno: '',
-    curp: '',
-    email: '',
-    password: ''
+    NOMBRE: '',
+    APELLIDO_PATERNO: '',
+    APELLIDO_MATERNO: '',
+    CURP: '',
+    CORREO: '',
+    USUARIO: '',
+    CONTRASEÑA: '',
+    RFC: ''
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMensaje('');
+    setError('');
     try {
       const response = await axios.post('http://localhost:3000/api/register', formData);
-      console.log('Usuario registrado:', response.data);
+      setMensaje('Usuario registrado correctamente');
+      setError('');
+      // Opcional: limpiar el formulario
+      setFormData({
+        NOMBRE: '',
+        APELLIDO_PATERNO: '',
+        APELLIDO_MATERNO: '',
+        CURP: '',
+        CORREO: '',
+        USUARIO: '',
+        CONTRASEÑA: '',
+        RFC: ''
+      });
     } catch (error) {
-      console.error('Fallo en el registro:', error);
+      setMensaje('');
+      if (error.response && error.response.data && error.response.data.error) {
+        setError(error.response.data.error);
+      } else {
+        setError('Fallo en el registro');
+      }
     }
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    // Mapear los nombres del input a los nombres esperados por el backend
+    const nameMap = {
+      name: 'NOMBRE',
+      apellidoPaterno: 'APELLIDO_PATERNO',
+      apellidoMaterno: 'APELLIDO_MATERNO',
+      curp: 'CURP',
+      email: 'CORREO',
+      usuario: 'USUARIO',
+      password: 'CONTRASEÑA',
+      rfc: 'RFC'
+    };
+    setFormData({ ...formData, [nameMap[name]]: value });
   };
 
   return (
@@ -37,7 +72,7 @@ function RegisterForm() {
             <input
               type="text"
               name="name"
-              value={formData.name}
+              value={formData.NOMBRE}
               onChange={handleChange}
               placeholder="Ingresa tu nombre"
               className="form-control rounded-3"
@@ -50,7 +85,7 @@ function RegisterForm() {
             <input
               type="text"
               name="apellidoPaterno"
-              value={formData.apellidoPaterno}
+              value={formData.APELLIDO_PATERNO}
               onChange={handleChange}
               placeholder="Ingresa tu apellido paterno"
               className="form-control rounded-3"
@@ -63,7 +98,7 @@ function RegisterForm() {
             <input
               type="text"
               name="apellidoMaterno"
-              value={formData.apellidoMaterno}
+              value={formData.APELLIDO_MATERNO}
               onChange={handleChange}
               placeholder="Ingresa tu apellido materno"
               className="form-control rounded-3"
@@ -76,9 +111,21 @@ function RegisterForm() {
             <input
               type="text"
               name="curp"
-              value={formData.curp}
+              value={formData.CURP}
               onChange={handleChange}
               placeholder="Ingresa tu CURP"
+              className="form-control rounded-3"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">RFC</label>
+            <input
+              type="text"
+              name="rfc"
+              value={formData.RFC}
+              onChange={handleChange}
+              placeholder="Ingresa tu RFC"
               className="form-control rounded-3"
               required
             />
@@ -89,7 +136,7 @@ function RegisterForm() {
             <input
               type="email"
               name="email"
-              value={formData.email}
+              value={formData.CORREO}
               onChange={handleChange}
               placeholder="Ingresa tu correo electrónico"
               className="form-control rounded-3"
@@ -100,9 +147,9 @@ function RegisterForm() {
           <div className="mb-4">
             <label className="form-label">Usuario</label>
             <input
-              type="password"
-              name="password"
-              value={formData.password}
+              type="text"
+              name="usuario"
+              value={formData.USUARIO}
               onChange={handleChange}
               placeholder="Ingresa tu usuario"
               className="form-control rounded-3"
@@ -115,7 +162,7 @@ function RegisterForm() {
             <input
               type="password"
               name="password"
-              value={formData.password}
+              value={formData.CONTRASEÑA}
               onChange={handleChange}
               placeholder="Ingresa tu contraseña"
               className="form-control rounded-3"
@@ -128,12 +175,13 @@ function RegisterForm() {
             Registrar
           </button>
           <p className="text-center mt-3">¿Ya tienes una cuenta?</p>
+          {mensaje && <div className="alert alert-success mt-3 text-center">{mensaje}</div>}
+          {error && <div className="alert alert-danger mt-3 text-center">{error}</div>}
         </form>
-        <button type="submit" className="btn btn-primary w-100 rounded-3" 
+        <button type="button" className="btn btn-primary w-100 rounded-3 mt-2" 
           style= {{ backgroundColor: '#7A1737', borderColor: '#7A1737'}}>
             Inicia Sesión
-          </button>
-
+        </button>
         <p className="text-center text-muted mt-4 small"></p>
       </div>
     </div>
